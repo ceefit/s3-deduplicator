@@ -1,3 +1,4 @@
 boto3
+fusepy
 python-json-logger
 PyYAML
