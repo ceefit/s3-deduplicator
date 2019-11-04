@@ -70,7 +70,7 @@ class Passthrough(Operations):
             'st_mode': 33188,
             'st_mtime': 1572000000,
             'st_nlink': 1,
-            'st_size': 1234567890,
+            'st_size': 69,
             'st_uid': 1000
         }
         if path == "/im-not-real":
