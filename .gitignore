@@ -6,3 +6,9 @@ venv/
 
 # Confidential Files
 configuration.yaml
+
+# Databases
+*.db*
+
+# Python
+__pycache__/

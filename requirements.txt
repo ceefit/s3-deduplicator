@@ -1,5 +1,19 @@
-apsw
-boto3
-fusepy
-python-json-logger
-PyYAML
+apsw==3.9.2.post1
+boto3==1.10.5
+botocore==1.13.5
+docutils==0.15.2
+fusepy==3.0.1
+jmespath==0.9.4
+python-dateutil==2.8.0
+python-json-logger==0.1.11
+PyYAML==5.1.2
+s3transfer==0.2.1
+six==1.12.0
+urllib3==1.25.6
+
+# Packages
+#apsw
+#boto3
+#fusepy
+#python-json-logger
+#PyYAML
