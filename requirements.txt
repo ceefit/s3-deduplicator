@@ -1,3 +1,4 @@
+apsw
 boto3
 fusepy
 python-json-logger
