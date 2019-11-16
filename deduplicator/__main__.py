@@ -81,19 +81,20 @@ def delete_query():
     for file in cursor.execute("SELECT bucket, key FROM s3_objects WHERE key = '%yourthinghere%';"):
         files_to_delete.append((file[0], file[1]))
     iteration_count = 0
+    items_to_delete = len(files_to_delete)
     commits_made = 0
     objects_to_delete_from_db = []
     for file in files_to_delete:
         s3.Object(file[0], file[1]).delete()
         objects_to_delete_from_db.append((file[0], file[1]))
         if iteration_count % 100 == 0:
-            commits_made += 1
             iteration_count = 0
             cursor.execute("BEGIN TRANSACTION;")
             cursor.executemany("DELETE from s3_objects WHERE bucket=? AND key=?;", objects_to_delete_from_db)
             cursor.execute("COMMIT;")
             objects_to_delete_from_db = []
-            print(f"==============={commits_made}===================")
+            print(f"===============[{((commits_made*100)/items_to_delete) * 100} complete]]================")
+            commits_made += 1
         iteration_count += 1
         print(file)
     cursor.execute("BEGIN TRANSACTION;")
@@ -101,16 +102,5 @@ def delete_query():
     cursor.execute("COMMIT;")
 
 
-def delete_files(files_to_delete):
-    files_to_delete = [
-
-    ]
-    for file in files_to_delete:
-        print((file[0], file[1]))
-        cursor.execute(f"DELETE from {table_name} WHERE bucket == '{file[0]}' AND  key == '{file[1]}';")
-        print(s3.Object(file[0], file[1]).delete())
-
-
-# delete_files(files_to_delete)
-delete_query()
+# delete_query()
 # write_to_db()
